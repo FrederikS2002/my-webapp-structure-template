@@ -1,13 +1,11 @@
 import http, {Server} from 'http';
 import 'dotenv/config';
-import {Application} from "express";
 import * as fs from "fs";
 import * as path from "path";
 import ip from 'ip'
 import https from "https";
 
-// eslint-disable-next-line @typescript-eslint/no-var-requires
-const app:Application = require('../app');
+import app from '../app';
 
 const port:number = getPort(process.env.PORT || 'p1');
 const port2:number = getPort(process.env.HTTPSPORT || 'p2');
@@ -24,7 +22,7 @@ server.listen(port);
 server.on('error', onError);
 server.on('listening', onListening);
 
-HTTPSServer.listen(port2)
+HTTPSServer.listen(port2);
 HTTPSServer.on('error', onError2);
 HTTPSServer.on('listening', onListeningHTTPS);
 

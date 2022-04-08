@@ -1,5 +1,7 @@
-import express, {Application, Request, Response} from 'express';
+import express, { Application, Request, Response } from 'express';
 import * as path from "path";
+//register modules
+import index from './routes/index';
 
 const app: Application = express();
 
@@ -16,7 +18,7 @@ app.use(express.urlencoded({
     extended: true
 }));
 
-app.use(function(req, res, next) {
+app.use(function (req, res, next) {
     res.header("Access-Control-Allow-Origin", "*");
     res.header("Access-Control-Allow-Methods", "GET, PUT, POST");
     res.header("Access-Control-Allow-Headers", "Origin, X-Requested-With, Content-Type, Accept");
@@ -25,18 +27,16 @@ app.use(function(req, res, next) {
 
 
 //set public dir
-app.use('/assets',express.static(path.join(__dirname, '..', 'public')));
+app.use('/assets', express.static(path.join(__dirname, '..', 'public')));
 
-app.use(function(req, res, next) {
+app.use(function (req, res, next) {
     res.header("Access-Control-Allow-Origin", "*");
     res.header("Access-Control-Allow-Methods", "GET, PUT, POST");
     res.header("Access-Control-Allow-Headers", "Origin, X-Requested-With, Content-Type, Accept");
     next();
 });
 
-//register modules
-// eslint-disable-next-line @typescript-eslint/no-var-requires
-app.use('/', require('./routes/index'));
+app.use('/', index);
 
 // catch 404
 app.use((req: Request, res: Response) => {
@@ -45,8 +45,9 @@ app.use((req: Request, res: Response) => {
     } else {
         res.status(404);
     }
-    res.render('error', {err: res.statusCode})
+    res.render('error', {err: res.statusCode});
 
 });
 
-module.exports = app;
+
+export default app;
