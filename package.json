@@ -1,0 +1,25 @@
+{
+  "name": "webapp-structure",
+  "version": "0.0.1",
+  "private": false,
+  "description": "My template for a react webapp with a node api",
+  "author": "Frederik",
+  "license": "ISC",
+  "scripts": {
+    "dev": "concurrently --kill-others \"npm run dev:fe\" \"npm run dev:be\"",
+    "dev:fe": "cd frontend && npm run dev",
+    "dev:be": "cd backend && npm run dev",
+    "build": "concurrently --kill-others \"npm run build:fe\" \"npm run build:be\"",
+    "build:fe": "cd frontend && npm run build",
+    "build:be": "cd backend && npm run build",
+    "start": "concurrently --kill-others \"npm run start:fe\" \"npm run start:be\"",
+    "start:fe": "cd frontend && npm run start",
+    "start:be": "cd backend && npm run start",
+    "lint": "concurrently --kill-others \"npm run lint:fe\" \"npm run lint:be\"",
+    "lint:fe": "cd frontend && npm run lint",
+    "lint:be": "cd backend && npm run lint"
+  },
+  "devDependencies": {
+    "concurrently": "^7.1.0"
+  }
+}
